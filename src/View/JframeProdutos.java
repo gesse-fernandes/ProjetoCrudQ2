@@ -22,6 +22,7 @@ public class JframeProdutos extends javax.swing.JFrame {
     public JframeProdutos() {
         this.setLocationRelativeTo(null);
         initComponents();
+        habilitar(false);
     }
 
     /**
@@ -282,6 +283,7 @@ public class JframeProdutos extends javax.swing.JFrame {
     }//GEN-LAST:event_tabelaMousePressed
 
     private void btn_novoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_novoActionPerformed
+        habilitar(true);
        
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_novoActionPerformed
@@ -365,4 +367,13 @@ public class JframeProdutos extends javax.swing.JFrame {
     private javax.swing.JTextField txtValorTot;
     private javax.swing.JTextField txtVunitario;
     // End of variables declaration//GEN-END:variables
+ final void habilitar(boolean valor)
+ {
+     txtNome.setEnabled(valor);
+     txtData.setEnabled(valor);
+     txtQdt.setEnabled(valor);
+     txtQdt.setEnabled(valor);
+     txtVunitario.setEnabled(valor);
+     txtLocalizar.setEnabled(valor);
+ }
 }
