@@ -10,6 +10,9 @@ import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
 import javax.swing.text.MaskFormatter;
 
+import Controller.ProdutosController;
+import Model.ProdutosModel;
+
 
 
 /**
@@ -18,11 +21,15 @@ import javax.swing.text.MaskFormatter;
  */
 public class JframeProdutos extends javax.swing.JFrame {
     MaskFormatter formatoData;
+    ProdutosModel produtosModel;
+    ProdutosController produtosController;
     
     public JframeProdutos() {
         this.setLocationRelativeTo(null);
         initComponents();
         habilitar(false);
+        produtosModel = new ProdutosModel();
+        produtosController = new ProdutosController();
     }
 
     /**
@@ -284,6 +291,9 @@ public class JframeProdutos extends javax.swing.JFrame {
 
     private void btn_novoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_novoActionPerformed
         habilitar(true);
+        produtosController.proximoProduto();
+        txtCodigo.setText(produtosController.proximoProduto());
+
        
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_novoActionPerformed
