@@ -33,7 +33,7 @@ public class ProdutosDao {
                     "C:\\Users\\gesse\\OneDrive\\Documentos\\NetBeansProjects\\ProjetoCrudQ2\\src\\Imagens\\ok.png"));
         } catch (Exception e) {
             //TODO: handle exception
-            JOptionPane.showMessageDialog(null, "erro ao cadastrar", "Erro", 0, new ImageIcon(
+            JOptionPane.showMessageDialog(null, "erro ao cadastrar\n"+e.getMessage(), "Erro", 0, new ImageIcon(
                     "C:\\Users\\gesse\\OneDrive\\Documentos\\NetBeansProjects\\ProjetoCrudQ2\\src\\Imagens\\btn_sair.png"));
         }
     }
