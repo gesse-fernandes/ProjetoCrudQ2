@@ -345,7 +345,7 @@ public class JframeProdutos extends javax.swing.JFrame {
     private void btn_saveActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btn_saveActionPerformed
         pegarInformacoes();
         produtosController.cadastrar(produtosModel);
-        txtLocalizar.setText("");
+        limpar();
         // TODO add your handling code here:
 
     }// GEN-LAST:event_btn_saveActionPerformed
@@ -353,7 +353,7 @@ public class JframeProdutos extends javax.swing.JFrame {
     private void btn_save1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btn_save1ActionPerformed
         pegarInformacoes();
         produtosController.editar(produtosModel);
-        txtLocalizar.setText("");
+        limpar();
         // TODO add your handling code here:
     }// GEN-LAST:event_btn_save1ActionPerformed
 
@@ -361,7 +361,7 @@ public class JframeProdutos extends javax.swing.JFrame {
         modelo.removeRow(tabela.getSelectedRow());
         produtosController.deletar(produtosModel);
         habilitar(true);
-        txtLocalizar.setText("");
+        limpar();
         // TODO add your handling code here:
     }// GEN-LAST:event_btn_deleteActionPerformed
 
@@ -447,7 +447,7 @@ public class JframeProdutos extends javax.swing.JFrame {
         int iValue = 0;
         double iValue1 = 0.0;
         produtosModel.setNome(txtNome.getText());
-        produtosModel.setDataValidade(txtData.getText());
+        produtosModel.setDataValidade(txtData.getText().toString());
         try {
             double value = Double.parseDouble(txtQdt.getText().trim().replaceAll(",", "."));
             iValue = (int) value;
@@ -470,7 +470,18 @@ public class JframeProdutos extends javax.swing.JFrame {
         double total = iValue1 * iValue;
         String.valueOf(total);
         produtosModel.setValorTotal(total);
-        txtValorTot.setText(String.format("%.2f", total));
+        txtValorTot.setText("R$ "+String.format("%.2f", total));
 
+    }
+
+    final void limpar()
+    {
+        txtCodigo.setText("");
+        txtNome.setText("");
+        txtData.setText("");
+        txtQdt.setText("");
+        txtVunitario.setText("");
+        txtValorTot.setText("");
+        txtLocalizar.setText("");
     }
 }
