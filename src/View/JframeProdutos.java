@@ -93,7 +93,7 @@ public class JframeProdutos extends javax.swing.JFrame {
     btn_delete = new javax.swing.JButton();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
+    setTitle("Vendas de Produtos Agricolas");
     jLabel1.setText("Código:");
 
     txtCodigo.setEnabled(false);
