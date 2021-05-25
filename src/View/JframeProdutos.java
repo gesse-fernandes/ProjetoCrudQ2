@@ -10,6 +10,7 @@ import java.text.DecimalFormat;
 import javax.swing.ImageIcon;
 import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.text.MaskFormatter;
 
 import Controller.ControleCampo;
@@ -26,6 +27,7 @@ public class JframeProdutos extends javax.swing.JFrame {
     MaskFormatter formatoNumeros;
     ProdutosModel produtosModel;
     ProdutosController produtosController;
+    DefaultTableModel modelo;
 
     public JframeProdutos() {
         this.setLocationRelativeTo(null);
@@ -33,6 +35,7 @@ public class JframeProdutos extends javax.swing.JFrame {
         habilitar(false);
         produtosModel = new ProdutosModel();
         produtosController = new ProdutosController();
+        modelo = (DefaultTableModel) tabela.getModel();
     }
 
     /**
@@ -312,11 +315,22 @@ public class JframeProdutos extends javax.swing.JFrame {
     }//GEN-LAST:event_txtVunitarioKeyTyped
 
     private void btn_consultaActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btn_consultaActionPerformed
+        modelo.setNumRows(0);
+        produtosController.pesquisar(txtLocalizar.getText(), modelo);
         // TODO add your handling code here:
 
     }// GEN-LAST:event_btn_consultaActionPerformed
 
     private void tabelaMousePressed(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_tabelaMousePressed
+        habilitar(true);
+        produtosModel = produtosController
+                .preenche(Integer.parseInt(modelo.getValueAt(tabela.getSelectedRow(), 0).toString()));
+        txtCodigo.setText(produtosModel.getId() + "");
+        txtNome.setText(produtosModel.getNome());
+        txtData.setText(produtosModel.getDataValidade());
+        txtQdt.setText(produtosModel.getQtd() + "");
+        txtVunitario.setText(produtosModel.getValorUnitario() + "");
+        txtValorTot.setText(produtosModel.getValorTotal()+"");
         // TODO add your handling code here:
     }// GEN-LAST:event_tabelaMousePressed
 
@@ -337,12 +351,17 @@ public class JframeProdutos extends javax.swing.JFrame {
     }// GEN-LAST:event_btn_saveActionPerformed
 
     private void btn_save1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btn_save1ActionPerformed
-
+        pegarInformacoes();
+        produtosController.editar(produtosModel);
+        txtLocalizar.setText("");
         // TODO add your handling code here:
     }// GEN-LAST:event_btn_save1ActionPerformed
 
     private void btn_deleteActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btn_deleteActionPerformed
-
+        modelo.removeRow(tabela.getSelectedRow());
+        produtosController.deletar(produtosModel);
+        habilitar(true);
+        txtLocalizar.setText("");
         // TODO add your handling code here:
     }// GEN-LAST:event_btn_deleteActionPerformed
 
