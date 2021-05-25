@@ -299,6 +299,9 @@ public class JframeProdutos extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_novoActionPerformed
 
     private void btn_saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_saveActionPerformed
+        pegarInformacoes();
+        produtosController.cadastrar(produtosModel);
+        txtLocalizar.setText("");
         // TODO add your handling code here:
     
 
@@ -385,5 +388,36 @@ public class JframeProdutos extends javax.swing.JFrame {
      txtQdt.setEnabled(valor);
      txtVunitario.setEnabled(valor);
      txtLocalizar.setEnabled(valor);
+ }
+
+ final void pegarInformacoes() {
+     int iValue = 0;
+     double iValue1 = 0.0;
+     produtosModel.setNome(txtNome.getText());
+     produtosModel.setDataValidade(txtData.getText());
+     try {
+         double value = Double.parseDouble(txtQdt.getText().trim().replaceAll(",", "."));
+         iValue = (int) value;
+         produtosModel.setQtd(iValue);
+     } catch (NumberFormatException exception) {
+         JOptionPane.showMessageDialog(null,
+                 "Campo Quantidade Obrigatorio ou Voce Digitou Invalido Pois deve ser numerico");
+         produtosModel.setQtd(0);
+         // TODO: handle exception
+     }
+     try {
+         double value1 = Double.parseDouble(txtVunitario.getText().trim().replaceAll(",", "."));
+         iValue1 = value1;
+         produtosModel.setValorUnitario(iValue1);
+     } catch (NumberFormatException exception) {
+         JOptionPane.showMessageDialog(null,
+                 "Campo Preço Obrigatorio ou voce digitou invalido pois deve ser numeros com casas decimais");
+         // TODO: handle exception
+     }
+     double total = iValue1 * iValue;
+     String.valueOf(total);
+     produtosModel.setValorTotal(total);
+     txtValorTot.setText(String.format("%.2f", total));
+
  }
 }
